@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Curso Javscript</title>
+    </head>
+    <body onload="executar()">
+        <div id="principal">
+            <input type="text" name="nome">
+            <button onClick="adicionar()">Adicionar</button>
+            <ul>
+
+            </ul>
+        </div>
+        <script>
+            var nomes = ["Diego", "Gabriel", "Lucas"];
+            var divPrincipal = document.querySelector('div#principal');
+            var lista = document.querySelector('div#principal ul');
+            
+            function adicionar() {
+                var input = document.querySelector('div#principal input');
+                adicionarLista(input.value);
+                atualizarBotoes();
+                input.value = '';
+            }
+
+            function adicionarLista(nome) {
+                var itemNome = document.createElement('li');
+                var botaoRemover = document.createElement('button');
+                botaoRemover.innerText = "Remover";
+                itemNome.innerHTML = nome + " " + botaoRemover.outerHTML;
+                lista.appendChild(itemNome);
+            }
+
+            function executar() {
+                divPrincipal.appendChild(lista);
+
+                for(const nome of nomes) {
+                    adicionarLista(nome);
+                    atualizarBotoes();
+                }
+            }
+
+            function atualizarBotoes() {
+                var botoes = document.querySelectorAll('div#principal ul li button');
+
+                for(const botao of botoes) {
+                    botao.onclick = function () {
+                        botao.parentNode.parentNode.removeChild(botao.parentNode);
+                    }
+                }
+            }
+                
+        </script>
+    </body>
+</html>

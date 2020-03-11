@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>Curso Javscript</title>
+    </head>
+    <body>
+        <div id="principal">
+            <button id="botao">Botão</button>
+        </div>
+        <script>
+            function gerarCor() {
+                var letras = "0123456789ABCDEF";
+                var cor = "#";
+                for (var i = 0; i < 6; i++) {
+                    cor += letras[Math.floor(Math.random() * 16)];
+                }
+                return cor;
+            }
+            
+            
+            function adicionarQuadrado() {
+                var c = document.createElement('canvas');
+                var medidas = {x:0, y:0, w:300, h:300}
+                c.style.width = 100;
+                c.style.height = 100;
+                c.style.border = '1px solid black';
+                var ctx = c.getContext("2d");
+                ctx.beginPath();
+                ctx.rect(medidas.x, medidas.y, medidas.w, medidas.h);
+                ctx.fillStyle = '#f00';
+                ctx.fillRect(medidas.x, medidas.y, medidas.w, medidas.h);
+                ctx.stroke();
+                c.addEventListener('mouseenter', function (e) {
+                    var novaCor = gerarCor(); // #E943F0
+                    ctx.fillStyle = novaCor;
+                    ctx.fillRect(medidas.x, medidas.y, medidas.w, medidas.h);
+                    ctx.stroke();
+                }, false);
+                var divPrincipal = document.querySelector('div#principal');
+                divPrincipal.appendChild(c);
+            }
+
+            var botao = document.querySelector('#botao');
+
+            botao.onclick = adicionarQuadrado;
+
+        </script>
+    </body>
+</html>

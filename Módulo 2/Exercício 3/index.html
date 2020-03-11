@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Curso Javscript</title>
+    </head>
+    <body>
+        <div id="principal">
+        </div>
+        <script>
+            var nomes = ["Diego", "Gabriel", "Lucas"];
+            var divPrincipal = document.querySelector('div#principal');
+            var lista = document.createElement('ul');
+            divPrincipal.appendChild(lista);
+
+            for(const nome of nomes) {
+                var itemNome = document.createElement('li');
+                itemNome.innerHTML = nome;
+                lista.appendChild(itemNome);
+            }
+        </script>
+    </body>
+</html>
